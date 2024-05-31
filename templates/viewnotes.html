@@ -1,0 +1,21 @@
+{% extends 'home.html' %}
+{% block addcss %}
+<link rel="stylesheet" href="{{url_for('static',filename='addnotes.css')}}">
+{% endblock addcss %}
+{% block content %}
+    <br>
+    <div class="container">
+        <h1>View notes</h1>
+            {% for i in data1 %}
+            <label for="titleField">Title:</label>
+            <input type="text" id="titleField"   name="title" value="{{i[0]}}" readonly/>
+
+            <label for="contentField">Content:</label>
+            <textarea id="contentField" class="content-field"  name="content" value="" readonly>{{i[1]}}</textarea>
+            <a href="{{url_for('view_allnotes')}}"><button>back</button></a>
+            {% endfor %}
+    </div>
+    {% endblock content %}
+
+    
+ 

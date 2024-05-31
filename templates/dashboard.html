@@ -1,0 +1,55 @@
+{% extends 'home.html' %}
+{% block addcss %}
+<style>
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      left: 0;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
+{% endblock %}
+{% block notes %}
+<div class="dropdown">
+    <button class="dropbtn">Notes</button>
+    <div class="dropdown-content">
+      <a href="{{url_for('addnotes')}}">addnotes</a>
+      <a href="{{url_for('view_allnotes')}}">View Notes</a>
+      <a href="{{url_for('getexceldata')}}">getexceldata</a>
+    </div>
+  </div>
+  
+  <div class="dropdown">
+    <button class="dropbtn">Files</button>
+    <div class="dropdown-content">
+      <a href="{{url_for('fileupload')}}">Add Files</a>
+      <a href="{{url_for('view_allfiles')}}">View Files</a>
+    </div>
+  </div>
+{% endblock %}
+{% block content %}
+<p> We are in Dashboard</p>
+{% endblock %}

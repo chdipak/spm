@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>home page</title>
+{% block addcss %} {% endblock %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f6f6f5; /* Background color */
+    }
+    
+    nav {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+    }
+    
+    nav h1 {
+        margin: 0;
+        text-align: center;
+    }
+    
+    nav h1 span {
+        color: #007bff; /* Color for "SPM" */
+    }
+    
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: left;
+    }
+    
+    nav ul li {
+        display: inline;
+    }
+    
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+    
+    nav ul li a:hover {
+        background-color: #555;
+    }
+</style>
+</head>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    
+    {% for message in messages %}
+      <center><p>{{ message }}</p> </center>
+    {% endfor %}
+   
+  {% endif %}
+{% endwith %}
+<body>
+    <h1><center>SPM</center></h1>
+    <nav>
+        
+        <ul>
+            <li><a href="{{url_for('home')}}">Home</a></li>
+            <li><a href="#">About</a></li>
+            {% if not  session.get('user') %}
+            <li><a href="{{url_for('register')}}">Register</a></li>/
+            <li><a href="{{url_for('login')}}">Login</a></li>
+            {% endif %}
+            {% if session.get('user') %}
+            <li><a href="{{url_for('logout')}}">Logout</a></li>
+            {% endif %}
+            {% block notes %}{% endblock %}
+        </ul>
+    </nav>
+    {% block content %}
+    <center><p style="color: rgb(101, 8, 58);"> Student Personal Manager which is efficient application for student to add, update, delete , read a notes</p></center>
+    {% endblock %}
+</body>
+</html>
